@@ -8,8 +8,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Jugador {
-    private String jugadorId;
-    private String nombre;
+    private String id ;
+    private String cuentaId ;
+    private String nombre ;
     private String apellido;
     private int edad;
 }

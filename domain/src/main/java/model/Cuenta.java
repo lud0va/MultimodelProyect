@@ -8,12 +8,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Cuenta {
-    private String cuentaId;
-    private String jugadorId;
-
-    private String nombreUsuario;
-    private String passwoed;
-    private String correoElectronico;
+    private String id ;
+    private String nombreUsuario ;
+    private String password ;
+    private String correoElectronico ;
 
 
 }
