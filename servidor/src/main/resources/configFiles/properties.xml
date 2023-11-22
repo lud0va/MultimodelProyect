@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <comment>XML file</comment>
+    <entry key="restaurantDataBase">jdbc:mysql://dam2.mysql.iesquevedo.es:3335/luisdecena_PSP?useSSL=false</entry>
+    <entry key="password">quevedo2dam</entry>
+    <entry key="user">root</entry>
+    <entry key="driver">com.mysql.cj.jdbc.Driver</entry>
+</properties>

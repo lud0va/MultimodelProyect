@@ -2,13 +2,13 @@ package dao.impl.commondatabase;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
-import common.Constants;
-import common.ConstantsErrors;
+
 import config.Configuration;
+import config.Constants;
 import jakarta.annotation.PreDestroy;
 import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
-import model.errors.BDDException;
+
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -48,7 +48,7 @@ public class DBConnection {
         try {
             con = hikariDataSource.getConnection();
         } catch (SQLException e) {
-            throw new BDDException(ConstantsErrors.ERROR_AL_OBTENER_LA_CONEXION_DE_LA_BASE_DE_DATOS +e.getErrorCode());
+            throw new RuntimeException(e);
         }
 
         return con;
