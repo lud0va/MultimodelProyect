@@ -6,6 +6,7 @@ import dao.impl.commondatabase.DBQueries;
 import errores.ApiError;
 import io.vavr.control.Either;
 import jakarta.inject.Inject;
+import lombok.extern.log4j.Log4j2;
 import model.Juego;
 
 import java.io.IOException;
@@ -31,7 +32,7 @@ public class JuegoDaoImpl implements JuegoDao {
              Statement statement = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
                      ResultSet.CONCUR_READ_ONLY)) {
 
-            rs = statement.executeQuery(DBQueries.SELECT_JUEGO_DE_JUGADOR);
+            rs = statement.executeQuery(DBQueries.SELECT_JUEGO);
 
             juegos = readFile(rs);
 
@@ -48,13 +49,13 @@ public class JuegoDaoImpl implements JuegoDao {
     }
 
     @Override
-    public Either<ApiError, List<Juego>> getJuegosDeJugador(int id) {
+    public Either<ApiError, List<Juego>> getJuegosDeJugador(String id) {
 
         List<Juego> juegos;
         try (Connection con = db.getConnection();
              PreparedStatement preparedStatement = con.prepareStatement(DBQueries.SELECT_JUEGO_DE_JUGADOR)) {
-            preparedStatement.setInt(1, id);
-            rs = preparedStatement.executeQuery(DBQueries.SELECT_JUEGO);
+            preparedStatement.setString(1, id);
+            rs = preparedStatement.executeQuery();
             juegos = readFile(rs);
 
         } catch (SQLException e) {

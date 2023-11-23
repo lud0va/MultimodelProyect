@@ -5,6 +5,7 @@ import dao.impl.commondatabase.DBConnection;
 import dao.impl.commondatabase.DBQueries;
 import errores.ApiError;
 import io.vavr.control.Either;
+import jakarta.inject.Inject;
 import model.Cuenta;
 
 import java.sql.Connection;
@@ -16,6 +17,7 @@ import java.time.LocalDateTime;
 public class CuentaDaoImpl implements CuentaDao {
     private final DBConnection db;
     private ResultSet rs;
+    @Inject
 
     public CuentaDaoImpl(DBConnection db) {
         this.db = db;
@@ -23,13 +25,13 @@ public class CuentaDaoImpl implements CuentaDao {
 
 
     @Override
-    public Either<ApiError, Cuenta> getCuenta(int idcuenta) {
+    public Either<ApiError, Cuenta> getCuenta(String idcuenta) {
 
        Cuenta cuenta;
         try (Connection con = db.getConnection();
-             PreparedStatement preparedStatement = con.prepareStatement(DBQueries.SELECT_JUEGO_DE_JUGADOR)) {
-            preparedStatement.setInt(1, idcuenta);
-            rs = preparedStatement.executeQuery(DBQueries.SELECT_JUEGO);
+             PreparedStatement preparedStatement = con.prepareStatement(DBQueries.SELECT_CUENTA_POR_ID)) {
+            preparedStatement.setString(1, idcuenta);
+            rs = preparedStatement.executeQuery();
             cuenta = readFile(rs);
 
         } catch (SQLException e) {

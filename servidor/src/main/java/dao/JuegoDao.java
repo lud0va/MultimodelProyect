@@ -12,6 +12,6 @@ public interface JuegoDao {
 
      Either<ApiError,List<Juego>> getAllJuegos();
 
-     Either<ApiError,List<Juego>> getJuegosDeJugador(int id);
+     Either<ApiError, List<Juego>> getJuegosDeJugador(String id);
 
 }
