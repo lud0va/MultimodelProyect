@@ -8,8 +8,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Consola {
-private String cuentaId;
-private String juegoId;
+private int consolaId;
+private String company;
+private String generacion;
 
 
 }

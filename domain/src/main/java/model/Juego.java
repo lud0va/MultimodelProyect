@@ -8,9 +8,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Juego {
-    private String juegoId;
-    private String tituloJuego;
-    private String plataforma;
+    private String juegoId  ;
+    private String jugadorId ;
+    private String tituloJuego ;
     private int pegi;
 
     private double precio;
