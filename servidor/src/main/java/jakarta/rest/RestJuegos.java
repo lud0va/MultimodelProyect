@@ -2,6 +2,7 @@ package jakarta.rest;
 
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
 import model.Cuenta;
 import model.Juego;
 
@@ -16,5 +17,19 @@ public class RestJuegos {
 
     @GET
     @Path("/{jugadorId}")
-    public Cuenta getCuentaById(@PathParam("jugadorId") int id){return null;}
+    public List<Juego> getJuegosById(@PathParam("jugadorId") int id){return null;}
+    @POST
+    public Response addJuego(Juego juego) {return null;}
+    @PUT
+    @Path("/{juegoId}")
+    public Response updateJuego(@PathParam("juegoId") int id, Juego updatedJuego) {
+       return null;
+    }
+
+    @DELETE
+    @Path("/{juegoId}")
+    public Response deleteJuego(@PathParam("juegoId") int id) {
+     return null;
+    }
 }
+
