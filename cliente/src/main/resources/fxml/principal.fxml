@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:id="root" prefHeight="400.0" prefWidth="600.0"  xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.principal.PrincipalController">
+    <center>
+        <StackPane prefHeight="150.0" prefWidth="200.0">
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="background" BorderPane.alignment="CENTER" />
+        </StackPane>
+    </center>
+    <top>
+        <MenuBar fx:id="menuPrinc">
+            <menus>
+                <Menu fx:id="menuOptions" mnemonicParsing="false" text="Options">
+                    <items>
+                        <MenuItem fx:id="menuItemLogout" mnemonicParsing="false" onAction="#menuClick" text="Logout" />
+                        <MenuItem fx:id="menuItemExit" mnemonicParsing="false" onAction="#exit" text="Exit" />
+                    </items>
+                </Menu>
+                <Menu fx:id="menuCustomers" mnemonicParsing="false" text="Costumers">
+                    <items>
+                        <MenuItem fx:id="customerAdd" mnemonicParsing="false" onAction="#menuClick" text="Add" />
+                        <MenuItem fx:id="customerDelete" mnemonicParsing="false" onAction="#menuClick" text="Delete" />
+                        <MenuItem fx:id="customerModify" mnemonicParsing="false"  onAction="#menuClick" text="Modify" />
+                        <MenuItem fx:id="costumerList" mnemonicParsing="false" onAction="#menuClick" text="List" />
+                    </items>
+                </Menu>
+                <Menu fx:id="menuOrders" mnemonicParsing="false" text="Orders">
+               <items>
+                  <MenuItem fx:id="orderAdd" mnemonicParsing="false" onAction="#menuClick" text="Add" />
+                  <MenuItem fx:id="orderDelete" mnemonicParsing="false" onAction="#menuClick" text="Delete" />
+                  <MenuItem fx:id="orderModify" mnemonicParsing="false" onAction="#menuClick" text="Modify" />
+                  <MenuItem fx:id="orderList" mnemonicParsing="false" onAction="#menuClick" text="List" />
+               </items></Menu>
+            </menus>
+        </MenuBar>
+    </top>
+</BorderPane>
