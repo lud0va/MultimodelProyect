@@ -68,6 +68,29 @@ public class JuegoDaoImpl implements JuegoDao {
         }
     }
 
+    @Override
+    public Either<ApiError, Juego> deleteJuego(String id) {
+
+
+
+
+
+
+
+
+        return null;
+    }
+
+    @Override
+    public Either<ApiError, Juego> addJuego(Juego j) {
+        return null;
+    }
+
+    @Override
+    public Either<ApiError, Juego> update(Juego j) {
+        return null;
+    }
+
 
     private List<Juego> readFile(ResultSet rs) {
         List<Juego> juegos = new ArrayList<>();

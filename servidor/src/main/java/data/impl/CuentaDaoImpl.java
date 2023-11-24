@@ -18,6 +18,7 @@ import java.util.UUID;
 public class CuentaDaoImpl implements CuentaDao {
     private final DBConnection db;
     private ResultSet rs;
+
     @Inject
 
     public CuentaDaoImpl(DBConnection db) {
@@ -28,23 +29,23 @@ public class CuentaDaoImpl implements CuentaDao {
     @Override
     public Either<ApiError, Cuenta> getCuentaToLogin(String usuario, String passw) {
         Cuenta cuenta;
-        try(Connection con= db.getConnection();
-            PreparedStatement preparedStatement=con.prepareStatement(DBQueries.SELECT_CUENTA_TO_LOGIN)) {
-            preparedStatement.setString(1,usuario);
-            preparedStatement.setString(2,passw);
+        try (Connection con = db.getConnection();
+             PreparedStatement preparedStatement = con.prepareStatement(DBQueries.SELECT_CUENTA_TO_LOGIN)) {
+            preparedStatement.setString(1, usuario);
+            preparedStatement.setString(2, passw);
             rs = preparedStatement.executeQuery();
             cuenta = readFile(rs);
 
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-       return Either.right(cuenta);
+        return Either.right(cuenta);
     }
 
     @Override
     public Either<ApiError, Cuenta> getCuenta(String idcuenta) {
 
-       Cuenta cuenta;
+        Cuenta cuenta;
         try (Connection con = db.getConnection();
              PreparedStatement preparedStatement = con.prepareStatement(DBQueries.SELECT_CUENTA_POR_ID)) {
             preparedStatement.setString(1, idcuenta);
@@ -63,23 +64,37 @@ public class CuentaDaoImpl implements CuentaDao {
     }
 
     @Override
-    public Cuenta addCuenta(Cuenta cuenta) {
-        return null;
+    public Either<ApiError,Cuenta> addCuenta(Cuenta cuenta) {
+
+        try (Connection con = db.getConnection();
+             PreparedStatement preparedStatementCuent = con.prepareStatement(DBQueries.INSERT_CUENTA);
+        ) {
+            preparedStatementCuent.setString(1, cuenta.getId().toString());
+            preparedStatementCuent.setString(2, cuenta.getNombreUsuario());
+            preparedStatementCuent.setString(3, cuenta.getPassword());
+            preparedStatementCuent.setString(4, cuenta.getCorreoElectronico());
+
+            preparedStatementCuent.executeUpdate();
+            return Either.right(cuenta);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    private  Cuenta readFile(ResultSet rs) {
-        Cuenta cuenta=new Cuenta();
+    private Cuenta readFile(ResultSet rs) {
+        Cuenta cuenta = new Cuenta();
         try {
 
 
             while (rs.next()) {
                 String id = rs.getString("id");
-                String  nombreUsuario = rs.getString("nombreUsuario");
+                String nombreUsuario = rs.getString("nombreUsuario");
                 String password = rs.getString("password");
                 String correoElectronico = rs.getString("correoElectronico");
 
-                UUID idCuent=UUID.fromString(id);
-                cuenta=new Cuenta(idCuent, nombreUsuario, password,correoElectronico);
+                UUID idCuent = UUID.fromString(id);
+                cuenta = new Cuenta(idCuent, nombreUsuario, password, correoElectronico);
             }
 
 

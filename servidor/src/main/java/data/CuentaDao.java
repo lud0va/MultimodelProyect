@@ -8,5 +8,5 @@ public interface CuentaDao {
 
     Either<ApiError,Cuenta>getCuentaToLogin(String usuario,String passw);
     Either<ApiError,Cuenta> getCuenta(String idcuenta);
-    Cuenta addCuenta(Cuenta cuenta);
+    Either<ApiError,Cuenta> addCuenta(Cuenta cuenta);
 }
