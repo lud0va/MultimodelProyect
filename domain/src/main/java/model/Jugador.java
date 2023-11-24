@@ -4,12 +4,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.UUID;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Jugador {
-    private String id ;
-    private String cuentaId ;
+    private UUID id ;
+    private UUID cuentaId ;
     private String nombre ;
     private String apellido;
     private int edad;

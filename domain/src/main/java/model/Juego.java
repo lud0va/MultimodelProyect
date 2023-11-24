@@ -4,12 +4,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.UUID;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Juego {
-    private String juegoId  ;
-    private String jugadorId ;
+    private UUID juegoId  ;
+    private UUID jugadorId ;
     private String tituloJuego ;
     private int pegi;
 

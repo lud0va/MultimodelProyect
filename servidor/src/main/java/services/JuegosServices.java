@@ -1,6 +1,6 @@
 package services;
 
-import dao.JuegoDao;
+import data.JuegoDao;
 import errores.ApiError;
 import io.vavr.control.Either;
 import jakarta.inject.Inject;

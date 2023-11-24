@@ -1,6 +1,6 @@
 package services;
 
-import dao.CuentaDao;
+import data.CuentaDao;
 import errores.ApiError;
 import io.vavr.control.Either;
 import jakarta.inject.Inject;
@@ -21,4 +21,8 @@ public class CuentasServices {
         return dao.getCuenta(idcuenta);
     }
 
+    public Either<ApiError,Cuenta>getCuentaToLogin(String usuario,String passw){
+        return dao.getCuentaToLogin(usuario,passw);
+
+    }
 }
