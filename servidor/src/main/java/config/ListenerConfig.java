@@ -2,7 +2,7 @@ package config;
 
 
 
-import dao.impl.commondatabase.DBConnection;
+import data.impl.commondatabase.DBConnection;
 import jakarta.inject.Inject;
 import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;
