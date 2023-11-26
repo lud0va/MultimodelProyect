@@ -15,6 +15,6 @@ public interface CuentaApi {
 
     @GET("cuenta/login")
     Single<Boolean> doLogin(@Query("nombreUsuario") String user, @Query("password") String password);
-    @POST
+    @POST("cuenta/")
      Single<Cuenta> addCuenta(Cuenta cuenta);
 }

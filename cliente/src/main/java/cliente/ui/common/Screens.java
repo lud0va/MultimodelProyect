@@ -2,22 +2,14 @@ package cliente.ui.common;
 
 public enum Screens {
 
-    CUSTOMERADD("/fxml/customerFXML/customerAdd.fxml"),
-    LOGIN("/fxml/login.fxml"),
+    ADD("/fxml/addScreen.fxml"),
+    LOGIN("/fxml/loginScreen.fxml"),
 
-    CUSTOMERDELETE("/fxml/customerFXML/customerDelete.fxml"),
+    LIST("/fxml/listScreen.fxml"),
 
-    CUSTOMERMAIN("/fxml/mainScreen.fxml"),
-
-    CUSTOMERMODIFY("/fxml/customerFXML/customerModify.fxml"),
-
-    CUSTOMERLIST("/fxml/customerFXML/customerList.fxml"),
+    CUSTOMERMAIN("/fxml/mainScreen.fxml");
 
 
-    ORDERADD("/fxml/orderFXML/orderAdd.fxml"),
-    ORDERDELETE("/fxml/orderFXML/orderDelete.fxml"),
-    ORDERLIST("/fxml/orderFXML/orderList.fxml"),
-    ORDERMODIFY("/fxml/orderFXML/orderModify.fxml");
 
     private String ruta;
 

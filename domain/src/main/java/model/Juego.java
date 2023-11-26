@@ -10,12 +10,13 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Juego {
-    private UUID juegoId  ;
-    private UUID jugadorId ;
+    private String juegoId  ;
+    private String jugadorId ;
     private String tituloJuego ;
     private int pegi;
 
     private double precio;
     private String desarrolladora;
+
 
 }

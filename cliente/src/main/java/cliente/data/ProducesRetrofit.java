@@ -4,6 +4,7 @@ package cliente.data;
 
 import cliente.data.retrofit.CuentaApi;
 import cliente.data.retrofit.JuegosApi;
+import cliente.data.retrofit.JugadorApi;
 import com.google.gson.*;
 import cliente.data.network.JavaNetCookieJar;
 import jakarta.enterprise.inject.Produces;
@@ -82,6 +83,9 @@ public class ProducesRetrofit {
     public CuentaApi getCuentaApi(Retrofit retrofit){
         return retrofit.create(CuentaApi.class);
     }
+
+    @Produces
+    public JugadorApi getJugadorApi(Retrofit retrofit){return retrofit.create(JugadorApi.class);}
 
 
 

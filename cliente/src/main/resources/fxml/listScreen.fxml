@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cliente.ui.pantallas.list.ListController">
+   <children>
+      <TableView layoutX="330.0" layoutY="50.0" prefHeight="200.0" prefWidth="255.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="Titulo" />
+          <TableColumn prefWidth="75.0" text="Pegi" />
+            <TableColumn prefWidth="103.3333485921224" text="Desarrolladora" />
+        </columns>
+      </TableView>
+      <SplitMenuButton layoutX="382.0" layoutY="305.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="151.0">
+        <items>
+          <MenuItem mnemonicParsing="false" text="Action 1" />
+          <MenuItem mnemonicParsing="false" text="Action 2" />
+        </items>
+      </SplitMenuButton>
+      <Label layoutX="367.0" layoutY="273.0" prefHeight="17.0" prefWidth="176.0" text="Selecciona nombre de compañia" />
+      <Button layoutX="432.0" layoutY="351.0" mnemonicParsing="false" text="Button" />
+      <Label layoutX="88.0" layoutY="23.0" prefHeight="17.0" prefWidth="118.0" text="Delete multiple" />
+      <TableView layoutX="30.0" layoutY="50.0" prefHeight="200.0" prefWidth="233.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="Titulo" />
+          <TableColumn prefWidth="75.0" text="IdJugador" />
+            <TableColumn prefWidth="81.3333485921224" text="Id" />
+        </columns>
+      </TableView>
+      <Label layoutX="418.0" layoutY="23.0" prefHeight="17.0" prefWidth="158.0" text="Delete por nombre de compañia " />
+   </children>
+</AnchorPane>

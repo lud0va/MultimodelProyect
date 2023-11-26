@@ -19,7 +19,7 @@ public class MainFX {
     public void start(@Observes @StartupScene Stage stage) {
         try {
 
-            Parent fxmlParent = fxmlLoader.load(getClass().getResourceAsStream("/fxml/principal.fxml"));
+            Parent fxmlParent = fxmlLoader.load(getClass().getResourceAsStream("/fxml/principalScreen.fxml"));
             PrincipalController controller = fxmlLoader.getController();
             controller.setStage(stage);
 

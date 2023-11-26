@@ -9,14 +9,13 @@ import jakarta.security.enterprise.identitystore.Pbkdf2PasswordHash;
 import model.Cuenta;
 
 public class CuentasServices {
-    private  Pbkdf2PasswordHash passwordHash;
+    private final Pbkdf2PasswordHash passwordHash;
 
     private SecurityContext securityContext;
 
     private final CuentaDao dao;
 
     @Inject
-
     public CuentasServices(CuentaDao dao,Pbkdf2PasswordHash passwordHash) {
         this.dao = dao;
         this.passwordHash=passwordHash;
@@ -34,7 +33,10 @@ public class CuentasServices {
 
     }
     public  Either<ApiError,Cuenta>addCuenta(Cuenta cuenta){
-      return   dao.addCuenta(cuenta);
+
+
+
+        return dao.addCuenta(cuenta);
     }
 
 

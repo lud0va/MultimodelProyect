@@ -7,15 +7,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 import lombok.Getter;
-import lombok.extern.log4j.Log4j2;
 import model.Cuenta;
 
 import cliente.ui.common.BaseScreenController;
@@ -23,7 +20,6 @@ import cliente.ui.common.Screens;
 
 
 import java.io.IOException;
-import java.util.Optional;
 
 
 public class PrincipalController extends BaseScreenController {
@@ -34,8 +30,7 @@ public class PrincipalController extends BaseScreenController {
     @FXML
     private MenuBar menuPrinc;
     private Stage primaryStage;
-    @Getter
-    private Cuenta cuenta;
+
 
 
     @FXML
@@ -115,33 +110,13 @@ public class PrincipalController extends BaseScreenController {
     @FXML
     private void menuClick(ActionEvent actionEvent) {
         switch (((MenuItem) actionEvent.getSource()).getId()) {
-            case "customerAdd":
-                loadScreen(Screens.CUSTOMERADD);
+            case "add":
+                loadScreen(Screens.ADD);
                 break;
-            case "customerDelete":
-                loadScreen(Screens.CUSTOMERDELETE);
+            case "listar":
+                loadScreen(Screens.LIST);
                 break;
-            case "customerModify":
-                loadScreen(Screens.CUSTOMERMODIFY);
-                break;
-            case "costumerList":
-                loadScreen(Screens.CUSTOMERLIST);
-                break;
-            case "menuItemLogout":
-                logout();
-                break;
-            case "orderAdd":
-                loadScreen(Screens.ORDERADD);
-                break;
-            case "orderDelete":
-                loadScreen(Screens.ORDERDELETE);
-                break;
-            case "orderModify":
-                loadScreen(Screens.ORDERMODIFY);
-                break;
-            case "orderList":
-                loadScreen(Screens.ORDERLIST);
-                break;
+
 
         }
 
@@ -149,11 +124,11 @@ public class PrincipalController extends BaseScreenController {
     }
 
 
-    public void onLogin(Cuenta cuenta) {
+    public void onLogin() {
 
-        this.cuenta = cuenta;
+
         menuPrinc.setVisible(true);
-        loadScreen(Screens.CUSTOMERMAIN);
+        loadScreen(Screens.LIST);
 
     }
 

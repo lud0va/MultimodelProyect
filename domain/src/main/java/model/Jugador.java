@@ -10,9 +10,14 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Jugador {
-    private UUID id ;
-    private UUID cuentaId ;
+    private String id ;
     private String nombre ;
     private String apellido;
     private int edad;
+
+    public Jugador(String nombre, String apellido, int edad) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.edad = edad;
+    }
 }

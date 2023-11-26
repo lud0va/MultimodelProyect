@@ -10,7 +10,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Consola {
-private UUID consolaId;
+private String consolaId;
 private String company;
 private String generacion;
 

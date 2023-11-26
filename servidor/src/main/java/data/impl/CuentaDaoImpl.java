@@ -7,12 +7,12 @@ import errores.ApiError;
 import io.vavr.control.Either;
 import jakarta.inject.Inject;
 import model.Cuenta;
+import model.Juego;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class CuentaDaoImpl implements CuentaDao {
@@ -20,18 +20,32 @@ public class CuentaDaoImpl implements CuentaDao {
     private ResultSet rs;
 
     @Inject
-
     public CuentaDaoImpl(DBConnection db) {
         this.db = db;
     }
 
+    public List<Cuenta> getAll(){
+        List<Cuenta> cuentas;
+        try (Connection con = db.getConnection();
+             Statement statement = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+                     ResultSet.CONCUR_READ_ONLY)) {
 
+            rs = statement.executeQuery(DBQueries.SELECT_JUEGO);
+
+            cuentas = readFile(rs);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+       return cuentas;
+    }
 
 
     @Override
     public Either<ApiError, Cuenta> getCuenta(String idcuenta) {
 
-        Cuenta cuenta;
+      List  <Cuenta> cuenta;
         try (Connection con = db.getConnection();
              PreparedStatement preparedStatement = con.prepareStatement(DBQueries.SELECT_CUENTA_POR_ID)) {
             preparedStatement.setString(1, idcuenta);
@@ -45,7 +59,7 @@ public class CuentaDaoImpl implements CuentaDao {
         if (cuenta == null) {
             return Either.left(new ApiError("Error al cargar la cuenta", LocalDateTime.now()));
         } else {
-            return Either.right(cuenta);
+            return Either.right(cuenta.get(0));
         }
     }
 
@@ -55,7 +69,7 @@ public class CuentaDaoImpl implements CuentaDao {
         try (Connection con = db.getConnection();
              PreparedStatement preparedStatementCuent = con.prepareStatement(DBQueries.INSERT_CUENTA);
         ) {
-            preparedStatementCuent.setString(1, cuenta.getId().toString());
+            preparedStatementCuent.setString(1, String.valueOf(getAll().size()+1));
             preparedStatementCuent.setString(2, cuenta.getNombreUsuario());
             preparedStatementCuent.setString(3, cuenta.getPassword());
             preparedStatementCuent.setString(4, cuenta.getCorreoElectronico());
@@ -69,7 +83,7 @@ public class CuentaDaoImpl implements CuentaDao {
     }
     @Override
     public Either<ApiError, Boolean> doLogin(String usuario, String passwrd) {
-        Cuenta cuenta;
+        List<Cuenta> cuenta;
         try (Connection con = db.getConnection();
              PreparedStatement preparedStatement = con.prepareStatement(DBQueries.SELECT_CUENTA_TO_LOGIN)) {
             preparedStatement.setString(1, usuario);
@@ -80,14 +94,14 @@ public class CuentaDaoImpl implements CuentaDao {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        if (cuenta.getId()==null){
+        if (cuenta.get(0).getId()==null){
             return Either.right(false);
         }
         return Either.right(true);
     }
 
-    private Cuenta readFile(ResultSet rs) {
-        Cuenta cuenta = new Cuenta();
+    private List<Cuenta> readFile(ResultSet rs) {
+        List<Cuenta> cuenta=new ArrayList<>() ;
         try {
 
 
@@ -96,11 +110,11 @@ public class CuentaDaoImpl implements CuentaDao {
                 String nombreUsuario = rs.getString("nombreUsuario");
                 String password = rs.getString("password");
                 String correoElectronico = rs.getString("correoElectronico");
-                long numericValue = Long.parseLong(id);
+              //  long numericValue = Long.parseLong(id);
 
                 // Crear un UUID utilizando el valor numérico
-                UUID idCuenta = new UUID(0, numericValue);
-                cuenta = new Cuenta(idCuenta, nombreUsuario, password, correoElectronico);
+              //  UUID idCuenta = new UUID(0, numericValue);
+                cuenta.add(new Cuenta(id, nombreUsuario, password, correoElectronico));
             }
 
 

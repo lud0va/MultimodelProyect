@@ -10,10 +10,15 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Cuenta {
-    private UUID id ;
+    private String id ;
     private String nombreUsuario ;
     private String password ;
     private String correoElectronico ;
 
 
+    public Cuenta(String nombreUsuario, String password, String correoElectronico) {
+        this.nombreUsuario = nombreUsuario;
+        this.password = password;
+        this.correoElectronico = correoElectronico;
+    }
 }

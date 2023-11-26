@@ -6,7 +6,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.Context;
 import jakarta.ws.rs.core.MediaType;
-import jakarta.ws.rs.core.Response;
 import model.Cuenta;
 import services.CuentasServices;
 
@@ -16,12 +15,12 @@ import services.CuentasServices;
 public class RestCuenta {
 
     private final CuentasServices serv;
-    @Context
+   /* @Context
     private HttpServletRequest request;
 
     @Context
     private HttpServletResponse response;
-
+*/
     @Inject
     public RestCuenta(CuentasServices serv) {
         this.serv = serv;
@@ -34,7 +33,7 @@ public class RestCuenta {
     }
     @GET
     @Path("/login")
-    public Boolean getLoginGet(@QueryParam("nombreUsuario") String user, @QueryParam ("password") String password) {
+    public Boolean doLogin(@QueryParam("nombreUsuario") String user, @QueryParam ("password") String password) {
        // request.getSession().setAttribute("LOGIN", true);
         return serv.doLogin(user,password).get();
     }
