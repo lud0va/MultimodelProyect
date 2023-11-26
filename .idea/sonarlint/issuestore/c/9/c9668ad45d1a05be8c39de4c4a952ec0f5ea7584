@@ -1,5 +1,9 @@
 
-g	java:S112&"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8ÈÜ”‚À1
-g	java:S112D"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8ÈÜ”‚À1
-s
-java:S1450"QRemove the "rs" field and declare it as a local variable in the relevant methods.(‰Úèüÿÿÿÿ8ÕÜ”‚À1
+g	java:S112*"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8ë€‰»À1
+g	java:S112C"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8ì€‰»À1
+g	java:S112Q"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8ì€‰»À1
+g	java:S112l"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8ì€‰»À1
+f
+java:S2583-"DChange this condition so that it does not always evaluate to "false"(²Ãœùÿÿÿÿ8Á¼ÆÀ1
+_
+java:S1126S"BReplace this if-then-else statement by a single method invocation.(ÊÎ‚«8•Ô‹»À1

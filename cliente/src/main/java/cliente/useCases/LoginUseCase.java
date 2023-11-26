@@ -1,4 +1,4 @@
 package cliente.useCases;
 
-public class LoginUseCase {
+public interface LoginUseCase {
 }

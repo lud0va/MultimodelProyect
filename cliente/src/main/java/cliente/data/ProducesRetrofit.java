@@ -64,7 +64,7 @@ public class ProducesRetrofit {
     public Retrofit retrofits(Gson gson, OkHttpClient clientOK ) {
 
         return  new Retrofit.Builder()
-                .baseUrl("http://localhost:8080/miprimerREST-1.0-SNAPSHOT/privado/api/")
+                .baseUrl("http://localhost:8080/servidor-1.0-SNAPSHOT/api/")
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .addCallAdapterFactory(RxJava3CallAdapterFactory.create())

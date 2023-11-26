@@ -5,9 +5,22 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cliente.ui.pantallas.login.LoginController">
    <children>
-      <TextField fx:id="userLog" layoutX="67.0" layoutY="109.0" promptText="user" text="root" />
-      <TextField fx:id="passLog" layoutX="67.0" layoutY="161.0" promptText="password" text="2dam" />
-      <Button fx:id="logButton" layoutX="116.0" layoutY="223.0" mnemonicParsing="false" onAction="#login" text="Login" />
-      <Label fx:id="userERR" layoutX="272.0" layoutY="113.0" prefHeight="49.0" prefWidth="138.0" />
+      <TextField fx:id="userLog" layoutX="41.0" layoutY="125.0" promptText="user" text="usuario3" />
+      <TextField fx:id="passLog" layoutX="41.0" layoutY="174.0" promptText="password" text="password3" />
+      <Button fx:id="logButton" layoutX="93.0" layoutY="299.0" mnemonicParsing="false" onAction="#login" text="Login" />
+      <Label fx:id="userERR" layoutX="47.0" layoutY="236.0" prefHeight="49.0" prefWidth="138.0" />
+      <Button fx:id="signButton" onAction="#Sign" layoutX="410.0" layoutY="299.0" mnemonicParsing="false" text="Sign up" />
+      <TextField layoutX="450.0" layoutY="84.0" />
+      <TextField layoutX="283.0" layoutY="84.0" />
+      <TextField layoutX="283.0" layoutY="137.0" />
+      <TextField layoutX="454.0" layoutY="137.0" />
+      <TextField layoutX="283.0" layoutY="199.0" />
+      <TextField layoutX="454.0" layoutY="199.0" />
+      <Label layoutX="288.0" layoutY="55.0" prefHeight="25.0" prefWidth="46.0" text="Nombre" />
+      <Label layoutX="461.0" layoutY="59.0" prefHeight="17.0" prefWidth="57.0" text="Apellido" />
+      <Label layoutX="288.0" layoutY="117.0" prefHeight="17.0" prefWidth="46.0" text="Usuario" />
+      <Label layoutX="454.0" layoutY="117.0" prefHeight="17.0" prefWidth="89.0" text="Contraseña" />
+      <Label layoutX="288.0" layoutY="178.0" text="Edad" />
+      <Label layoutX="454.0" layoutY="178.0" prefHeight="17.0" prefWidth="89.0" text="Correo" />
    </children>
 </AnchorPane>

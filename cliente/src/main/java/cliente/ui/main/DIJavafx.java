@@ -1,10 +1,11 @@
 package cliente.ui.main;
 
+import javafx.application.Application;
+import javafx.stage.Stage;
+
 import jakarta.enterprise.inject.se.SeContainer;
 import jakarta.enterprise.inject.se.SeContainerInitializer;
 import jakarta.enterprise.util.AnnotationLiteral;
-import javafx.application.Application;
-import javafx.stage.Stage;
 
 
 public class DIJavafx extends Application {

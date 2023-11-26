@@ -15,7 +15,7 @@ import retrofit2.Response;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-abstract class DaoGenerics {
+public abstract class DaoGenerics {
 
 
     private Gson gson;
@@ -47,23 +47,23 @@ abstract class DaoGenerics {
 
     public <T> Single<Either<ApiError, T>> safeSingleApicall(Single<T> call) {
         return call.map(t ->
-                        Either.right(t).mapLeft(o -> (ApiError)o)
+                            Either.right(t).mapLeft(o -> (ApiError)o)
                 )
                 .subscribeOn(Schedulers.io())
                 .onErrorReturn(throwable -> {
-                    Either<ApiError, T> error = Either.left(new ApiError("Error de comunicacion",LocalDateTime.now()));
+                    Either<ApiError, T> error = Either.left(new ApiError());
 
                     if (throwable instanceof HttpException) {
                         int code = ((HttpException) throwable).code();
                         if (((HttpException) throwable).response().errorBody()!= null) {
                             if (Objects.equals(((HttpException) throwable).response().errorBody().contentType(), MediaType.get("application/json"))) {
                                 ApiError api = gson.fromJson(((HttpException) throwable).response().errorBody().charStream(), ApiError.class);
-                                error = Either.left(new ApiError(code + api.getMessage(), LocalDateTime.now()));
+                                error = Either.left(new ApiError());
 
 
                                 //error = Either.right(T);
                             } else {
-                                error = Either.left(new ApiError(((HttpException) throwable).response().message(),LocalDateTime.now()));
+                                error = Either.left(new ApiError());
                             }
                         }
                     }
@@ -73,11 +73,31 @@ abstract class DaoGenerics {
 
     }
 
-    public Single<Either<String, String>> safeSingleVoidApicall(Single<Response<Void>> call) {
+    public <T> Single<Either<ApiError, T>> safeSingleApiCall(Single<T> call) {
+        return call.map(t -> Either.right(t).mapLeft(o -> (ApiError)o))
+                .subscribeOn(Schedulers.io())
+                .onErrorReturn(throwable -> {
+                    Either<ApiError, T> error = Either.left(new ApiError());
+                    if (throwable instanceof HttpException httpException) {
+                        if (Objects.equals(httpException.response().errorBody().contentType(), MediaType.get("application/json"))) {
+                            //Gson g = new Gson();
+                            //ApiError apierror = g.fromJson(((HttpException) throwable).response().errorBody().string(), dao.modelo.marvel.ApiError.class);
+                            //error = Either.left(apierror.getMessage());
+                        } else {
+                            error = Either.left(new ApiError());
+                        }
+                    }
+                    return error;
+                });
+
+    }
+
+
+    public Single<Either<ApiError, String>> safeSingleVoidApicall(Single<Response<Void>> call) {
         return call.map(response -> {
-                    var retorno = Either.right("OK").mapLeft(Object::toString);
+                    Either<ApiError,String> retorno = Either.right("OK");
                     if (!response.isSuccessful()) {
-                        retorno = Either.left(response.message());
+                        retorno = Either.left(new ApiError());
                     }
                     return retorno;
                 })

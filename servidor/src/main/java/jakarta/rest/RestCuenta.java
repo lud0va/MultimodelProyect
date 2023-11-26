@@ -14,12 +14,13 @@ import services.CuentasServices;
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class RestCuenta {
+
+    private final CuentasServices serv;
     @Context
     private HttpServletRequest request;
 
     @Context
     private HttpServletResponse response;
-    private final CuentasServices serv;
 
     @Inject
     public RestCuenta(CuentasServices serv) {
@@ -33,20 +34,13 @@ public class RestCuenta {
     }
     @GET
     @Path("/login")
-    public Response getLoginGet(@QueryParam("user") String user, @QueryParam ("password") String password) {
-        request.getSession().setAttribute("LOGIN", null);
-        if (user == null || password == null) {
-            return Response.status(Response.Status.BAD_REQUEST).build();
-        }
-        if (!user.equals("admin") || !password.equals("admin"))
-            return Response.status(Response.Status.UNAUTHORIZED).build();
-
-        request.getSession().setAttribute("LOGIN", true);
-        return Response.status(Response.Status.NO_CONTENT).build();
+    public Boolean getLoginGet(@QueryParam("nombreUsuario") String user, @QueryParam ("password") String password) {
+       // request.getSession().setAttribute("LOGIN", true);
+        return serv.doLogin(user,password).get();
     }
 
     @POST
-    public Response addCuenta(Cuenta cuenta) {
-        return null;
+    public Cuenta addCuenta(Cuenta cuenta) {
+        return serv.addCuenta(cuenta).get();
     }
 }

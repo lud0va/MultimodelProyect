@@ -105,8 +105,13 @@ public class JuegoDaoImpl implements JuegoDao {
                 double precio = rs.getDouble("precio");
 
                 String desarrolladora = rs.getString("desarrolladora");
-                UUID jueg=UUID.fromString(juegoId);
-                UUID jugad=UUID.fromString(jugadorId);
+                long numericValuejueg = Long.parseLong(juegoId);
+                 long numericValuejugador=Long.parseLong(jugadorId);
+
+                // Crear un UUID utilizando el valor numérico
+                UUID jueg = new UUID(0, numericValuejueg);
+                UUID jugad= new UUID(0, numericValuejugador);
+
 
                 juegos.add(new Juego(jueg, jugad, tituloJuego, pegi, precio, desarrolladora));
             }

@@ -7,5 +7,9 @@ import model.Cuenta;
 
 public interface CuentaDao {
 
-    public Single<Either<ApiError, Cuenta>> getUsuarioById(String id);
+     Single<Either<ApiError, Cuenta>> getUsuarioById(String id);
+
+     Single<Either<ApiError, Cuenta>> addCuenta(Cuenta cuenta);
+
+     Single<Either<ApiError, Boolean>> doLogin(String user, String passwd);
 }

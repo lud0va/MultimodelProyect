@@ -1,5 +1,6 @@
 package cliente.ui.pantallas.login;
 
+import jakarta.inject.Inject;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -18,13 +19,24 @@ public class LoginController extends BaseScreenController {
     @FXML
     private TextField passLog;
 
+    @Inject
     public LoginController(LoginViewModel loginViewModel) {
         this.loginViewModel = loginViewModel;
     }
 
+    @Override
+    public void principalCargado() {
+        super.principalCargado();
+    }
+
+   @FXML
+    private void Sign(ActionEvent actionEvent) {
+
+
+    }
     @FXML
     private void login(ActionEvent actionEvent) {
-
-
+        loginViewModel.doLogin(userLog.getText(),passLog.getText());
+        userERR.setText(loginViewModel.getState().get().getLogged().toString());
     }
 }

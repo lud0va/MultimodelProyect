@@ -25,7 +25,7 @@ import cliente.ui.common.Screens;
 import java.io.IOException;
 import java.util.Optional;
 
-@Log4j2
+
 public class PrincipalController extends BaseScreenController {
 
 
@@ -76,7 +76,7 @@ public class PrincipalController extends BaseScreenController {
 
 
         } catch (IOException e) {
-            log.error(e.getMessage(), e);
+            throw new RuntimeException(e);
         }
         return panePantalla;
     }
@@ -101,33 +101,14 @@ public class PrincipalController extends BaseScreenController {
 
     }
 
-    private void closeWindowEvent(WindowEvent event) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.getButtonTypes().remove(ButtonType.OK);
-        alert.getButtonTypes().add(ButtonType.CANCEL);
-        alert.getButtonTypes().add(ButtonType.YES);
-        alert.setTitle("Quit application");
-        alert.setContentText("Close without saving?");
-        alert.initOwner(primaryStage.getOwner());
-        Optional<ButtonType> res = alert.showAndWait();
 
 
-        res.ifPresent(buttonType -> {
-            if (buttonType == ButtonType.CANCEL) {
-                event.consume();
-            }
-        });
-    }
 
 
-    public void exit(ActionEvent actionEvent) {
-
-        primaryStage.fireEvent(new WindowEvent(primaryStage, WindowEvent.WINDOW_CLOSE_REQUEST));
-    }
 
     public void setStage(Stage stage) {
         primaryStage = stage;
-        primaryStage.addEventFilter(WindowEvent.WINDOW_CLOSE_REQUEST, this::closeWindowEvent);
+
     }
 
 

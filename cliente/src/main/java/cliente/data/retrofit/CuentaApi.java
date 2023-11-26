@@ -1,19 +1,20 @@
 package cliente.data.retrofit;
 
 import io.reactivex.rxjava3.core.Single;
-import jakarta.ws.rs.GET;
-import jakarta.ws.rs.POST;
-import jakarta.ws.rs.Path;
-import jakarta.ws.rs.PathParam;
-import jakarta.ws.rs.core.Response;
+
 import model.Cuenta;
+import retrofit2.http.GET;
+import retrofit2.http.POST;
+import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface CuentaApi {
 
-    @GET
-    @Path("/{id}")
-    Single<Cuenta> getCuentaById(@PathParam("id") String id);
+    @GET("cuenta/{id}")
+    Single<Cuenta> getCuentaById(@Path("id") String id);
 
+    @GET("cuenta/login")
+    Single<Boolean> doLogin(@Query("nombreUsuario") String user, @Query("password") String password);
     @POST
-     Single<Response> addCuenta(Cuenta cuenta);
+     Single<Cuenta> addCuenta(Cuenta cuenta);
 }

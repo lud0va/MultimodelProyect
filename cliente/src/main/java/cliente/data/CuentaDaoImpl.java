@@ -6,7 +6,10 @@ import errores.ApiError;
 import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 import io.vavr.control.Either;
+import jakarta.inject.Inject;
 import model.Cuenta;
+
+import java.time.LocalDateTime;
 
 public class CuentaDaoImpl extends DaoGenerics  implements CuentaDao{
 
@@ -14,6 +17,7 @@ public class CuentaDaoImpl extends DaoGenerics  implements CuentaDao{
     private final CuentaApi cuentaApi;
 
 
+    @Inject
     public CuentaDaoImpl(CuentaApi cuentaApi, Gson gson) {
         super(gson);
 
@@ -24,5 +28,16 @@ public class CuentaDaoImpl extends DaoGenerics  implements CuentaDao{
                   .subscribeOn(Schedulers.io());
 
 
+    }
+
+    @Override
+    public Single<Either<ApiError, Cuenta>> addCuenta(Cuenta cuenta) {
+        return safeSingleApicall(cuentaApi.addCuenta(cuenta).subscribeOn(Schedulers.io()));
+    }
+
+    @Override
+        public Single<Either<ApiError, Boolean>> doLogin(String user, String passwd) {
+
+        return safeSingleApiCall(cuentaApi.doLogin(user,passwd).subscribeOn(Schedulers.io()));
     }
 }

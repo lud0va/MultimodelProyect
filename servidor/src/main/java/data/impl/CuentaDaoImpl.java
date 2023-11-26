@@ -26,21 +26,7 @@ public class CuentaDaoImpl implements CuentaDao {
     }
 
 
-    @Override
-    public Either<ApiError, Cuenta> getCuentaToLogin(String usuario, String passw) {
-        Cuenta cuenta;
-        try (Connection con = db.getConnection();
-             PreparedStatement preparedStatement = con.prepareStatement(DBQueries.SELECT_CUENTA_TO_LOGIN)) {
-            preparedStatement.setString(1, usuario);
-            preparedStatement.setString(2, passw);
-            rs = preparedStatement.executeQuery();
-            cuenta = readFile(rs);
 
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return Either.right(cuenta);
-    }
 
     @Override
     public Either<ApiError, Cuenta> getCuenta(String idcuenta) {
@@ -81,6 +67,24 @@ public class CuentaDaoImpl implements CuentaDao {
             throw new RuntimeException(e);
         }
     }
+    @Override
+    public Either<ApiError, Boolean> doLogin(String usuario, String passwrd) {
+        Cuenta cuenta;
+        try (Connection con = db.getConnection();
+             PreparedStatement preparedStatement = con.prepareStatement(DBQueries.SELECT_CUENTA_TO_LOGIN)) {
+            preparedStatement.setString(1, usuario);
+            preparedStatement.setString(2,passwrd);
+                    rs = preparedStatement.executeQuery();
+            cuenta = readFile(rs);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        if (cuenta.getId()==null){
+            return Either.right(false);
+        }
+        return Either.right(true);
+    }
 
     private Cuenta readFile(ResultSet rs) {
         Cuenta cuenta = new Cuenta();
@@ -92,9 +96,11 @@ public class CuentaDaoImpl implements CuentaDao {
                 String nombreUsuario = rs.getString("nombreUsuario");
                 String password = rs.getString("password");
                 String correoElectronico = rs.getString("correoElectronico");
+                long numericValue = Long.parseLong(id);
 
-                UUID idCuent = UUID.fromString(id);
-                cuenta = new Cuenta(idCuent, nombreUsuario, password, correoElectronico);
+                // Crear un UUID utilizando el valor numérico
+                UUID idCuenta = new UUID(0, numericValue);
+                cuenta = new Cuenta(idCuenta, nombreUsuario, password, correoElectronico);
             }
 
 

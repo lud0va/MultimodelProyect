@@ -1,10 +1,11 @@
 package cliente.ui.main;
 
 
+import javafx.fxml.FXMLLoader;
+
 import jakarta.enterprise.inject.Instance;
 import jakarta.enterprise.inject.Produces;
 import jakarta.inject.Inject;
-import javafx.fxml.FXMLLoader;
 
 public class FXMLLoaderProducer {
 
