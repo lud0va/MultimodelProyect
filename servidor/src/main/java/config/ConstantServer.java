@@ -1,0 +1,58 @@
+package config;
+
+public class ConstantServer {
+    public static final String ERROR_AL_CARGAR_LA_CUENTA = "Error al cargar la cuenta";
+    public static final String NOMBRE_USUARIO = "nombreUsuario";
+    public static final String CORREO_ELECTRONICO = "correoElectronico";
+    public static final String JUEGO_ID = "juegoId";
+    public static final String JUGADOR_ID = "jugadorId";
+    public static final String TITULO_JUEGO = "tituloJuego";
+    public static final String PEGI = "pegi";
+    public static final String PRECIO = "precio";
+    public static final String DESARROLLADORA = "desarrolladora";
+    public static final String FILTER_LOGIN = "FilterLogin";
+    public static final String API_PATH_LOGIN = "/api/*";
+    public static final String PATH_CUENTA_LOGINFILT = "/api/cuenta/login";
+    public static final String POST = "POST";
+    public static final String LOGIN = "LOGIN";
+    public static final String FORBIDEN = "FORBIDEN";
+    public static final String CUENTA_PATH = "/cuenta";
+    public static final String ID_PATH_GET = "/{id}";
+    public static final String LOGIN_PATH = "/login";
+    public static final String JUEGOS_PATH = "/juegos";
+    public static final String JUGADOR_ID_PATHGET = "/{jugadorId}";
+    public static final String JUEGOS_DE_COMPANY = "/juegosDeCompany";
+    public static final String COMPANY = "company";
+    public static final String JUEGO_NO_ENCONTRADO = "juego no encontrado";
+    public static final String JUEGO_ID_PATH = "/{juegoId}";
+    public static final String DELETE_MULTIPLE = "/deleteMultiple";
+    public static final String JUEGO_IDS = "juegoIds";
+    public static final String JUGADOR_PATH = "/jugador";
+    public static final String NUMBER_HASH = "1234";
+    private ConstantServer(){}
+    public static final String CONFIG_FILES_PROPERTIES_XML = "configFiles/properties.xml";
+    public static final String RESTAURANT_DATA_BASE = "restaurantDataBase";
+    public static final String USER = "user";
+    public static final String ID_PATH = "/{id}";
+    public static final String PASSWORD = "password";
+    public static final String DRIVER = "driver";
+    public static final String CACHE_PREP_STMTS = "cachePrepStmts";
+    public static final String PREP_STMT_CACHE_SIZE = "prepStmtCacheSize";
+    public static final String PREP_STMT_CACHE_SQL_LIMIT = "prepStmtCacheSqlLimit";
+    public static final String ID = "id";
+    public static final String FIRST_NAME = "first_name";
+    public static final String LAST_NAME = "last_name";
+    public static final String EMAIL = "email";
+    public static final String PHONE = "phone";
+    public static final String DATE_OF_BIRTH = "date_of_birth";
+    public static final String API_USUARIOS_PATH = "/api/usuarios";
+    public static final String ORDER_DATE = "order_date";
+    public static final String CUSTOMER_ID = "customer_id";
+    public static final String TABLE_ID = "table_id";
+    public static final String API = "/api";
+    public static final String CUSTOMERS = "/customers";
+    public static final String ID_CUST = "id";
+    public static final String ORDERS_PATH = "/orders";
+    public static final String ORDER_ID_PATH = "/{order_id}";
+    public static final String ORDER_ID = "order_id";
+}

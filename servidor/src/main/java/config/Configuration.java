@@ -6,6 +6,7 @@
 package config;
 
 
+import errores.exceptions.BDDException;
 import jakarta.inject.Singleton;
 import lombok.Getter;
 
@@ -24,9 +25,9 @@ public class Configuration {
     private Configuration() {
         try {
             p = new Properties();
-            p.loadFromXML(Configuration.class.getClassLoader().getResourceAsStream(Constants.CONFIG_FILES_PROPERTIES_XML));
+            p.loadFromXML(Configuration.class.getClassLoader().getResourceAsStream(ConstantServer.CONFIG_FILES_PROPERTIES_XML));
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new BDDException(e.getMessage());
         }
     }
 

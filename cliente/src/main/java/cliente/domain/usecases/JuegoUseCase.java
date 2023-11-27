@@ -1,4 +1,4 @@
-package cliente.domain.useCases.useCases;
+package cliente.domain.usecases;
 
 import cliente.domain.errores.ErrorClient;
 import io.reactivex.rxjava3.core.Single;

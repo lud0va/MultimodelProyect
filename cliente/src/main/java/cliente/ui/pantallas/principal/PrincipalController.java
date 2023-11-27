@@ -1,6 +1,8 @@
 package cliente.ui.pantallas.principal;
 
 
+import cliente.ui.common.error.FxExceptions;
+import common.Constant;
 import jakarta.enterprise.inject.Instance;
 import jakarta.inject.Inject;
 import javafx.event.ActionEvent;
@@ -12,6 +14,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import lombok.Getter;
 import model.Cuenta;
 
@@ -29,26 +32,28 @@ public class PrincipalController extends BaseScreenController {
 
     @FXML
     private MenuBar menuPrinc;
-    private Stage primaryStage;
-
 
 
     @FXML
     public BorderPane root;
 
+    private Stage primaryStage;
 
-    private final Alert alert;
 
 
     @Inject
     public PrincipalController(Instance<Object> instance) {
 
         this.instance = instance;
-        alert = new Alert(Alert.AlertType.NONE);
+
 
 
     }
 
+    public void setStage(Stage stage) {
+        primaryStage = stage;
+
+    }
     private void loadScreen(Screens pantalla) {
 
 
@@ -71,17 +76,13 @@ public class PrincipalController extends BaseScreenController {
 
 
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new FxExceptions(e.getMessage());
         }
         return panePantalla;
     }
 
 
-    public void logout() {
 
-        menuPrinc.setVisible(false);
-        loadScreen(Screens.LOGIN);
-    }
 
     private void changeScreen(Pane newScreen) {
 
@@ -101,22 +102,18 @@ public class PrincipalController extends BaseScreenController {
 
 
 
-    public void setStage(Stage stage) {
-        primaryStage = stage;
 
-    }
 
 
     @FXML
     private void menuClick(ActionEvent actionEvent) {
         switch (((MenuItem) actionEvent.getSource()).getId()) {
-            case "add":
+            case Constant.ADD_MENU:
                 loadScreen(Screens.ADD);
                 break;
-            case "listar":
+            case Constant.LISTAR_MENU:
                 loadScreen(Screens.LIST);
                 break;
-
 
         }
 
@@ -132,4 +129,7 @@ public class PrincipalController extends BaseScreenController {
 
     }
 
+    public Stage getPrimaryStage() {
+        return primaryStage;
+    }
 }

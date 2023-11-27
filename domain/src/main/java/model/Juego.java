@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.UUID;
 
 @Data
 @AllArgsConstructor
@@ -18,5 +17,10 @@ public class Juego {
     private double precio;
     private String desarrolladora;
 
-
+    public Juego(String tituloJuego, int pegi, double precio, String desarrolladora) {
+        this.tituloJuego = tituloJuego;
+        this.pegi = pegi;
+        this.precio = precio;
+        this.desarrolladora = desarrolladora;
+    }
 }

@@ -1,19 +1,22 @@
 package data.impl;
 
+
+import config.ConstantServer;
 import data.CuentaDao;
 import data.impl.commondatabase.DBConnection;
 import data.impl.commondatabase.DBQueries;
 import errores.ApiError;
+import errores.exceptions.BDDException;
 import io.vavr.control.Either;
 import jakarta.inject.Inject;
 import model.Cuenta;
-import model.Juego;
+
 
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
+
 
 public class CuentaDaoImpl implements CuentaDao {
     private final DBConnection db;
@@ -35,7 +38,7 @@ public class CuentaDaoImpl implements CuentaDao {
             cuentas = readFile(rs);
 
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new BDDException(e.getMessage());
         }
 
        return cuentas;
@@ -53,11 +56,11 @@ public class CuentaDaoImpl implements CuentaDao {
             cuenta = readFile(rs);
 
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new BDDException(e.getMessage());
         }
 
-        if (cuenta == null) {
-            return Either.left(new ApiError("Error al cargar la cuenta", LocalDateTime.now()));
+        if (cuenta.isEmpty()) {
+            return Either.left(new ApiError(ConstantServer.ERROR_AL_CARGAR_LA_CUENTA, LocalDateTime.now()));
         } else {
             return Either.right(cuenta.get(0));
         }
@@ -78,7 +81,7 @@ public class CuentaDaoImpl implements CuentaDao {
             return Either.right(cuenta);
 
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new BDDException(e.getMessage());
         }
     }
     @Override
@@ -92,12 +95,14 @@ public class CuentaDaoImpl implements CuentaDao {
             cuenta = readFile(rs);
 
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new BDDException(e.getMessage());
         }
         if (cuenta.get(0).getId()==null){
             return Either.right(false);
+        }else {
+            return Either.right(true);
         }
-        return Either.right(true);
+
     }
 
     private List<Cuenta> readFile(ResultSet rs) {
@@ -106,20 +111,19 @@ public class CuentaDaoImpl implements CuentaDao {
 
 
             while (rs.next()) {
-                String id = rs.getString("id");
-                String nombreUsuario = rs.getString("nombreUsuario");
-                String password = rs.getString("password");
-                String correoElectronico = rs.getString("correoElectronico");
-              //  long numericValue = Long.parseLong(id);
+                String id = rs.getString(ConstantServer.ID);
+                String nombreUsuario = rs.getString(ConstantServer.NOMBRE_USUARIO);
+                String password = rs.getString(ConstantServer.PASSWORD);
+                String correoElectronico = rs.getString(ConstantServer.CORREO_ELECTRONICO);
 
-                // Crear un UUID utilizando el valor numérico
-              //  UUID idCuenta = new UUID(0, numericValue);
+
+
                 cuenta.add(new Cuenta(id, nombreUsuario, password, correoElectronico));
             }
 
 
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new BDDException(e.getMessage());
         }
         return cuenta;
     }

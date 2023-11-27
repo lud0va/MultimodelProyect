@@ -2,6 +2,7 @@ package data.impl.commondatabase;
 
 public class DBQueries {
 
+    private DBQueries(){}
     public static final String SELECT_JUEGO="select * from Juego";
     public static final String SELECT_JUEGO_DE_JUGADOR="select * from Juego where jugadorId= ?";
 

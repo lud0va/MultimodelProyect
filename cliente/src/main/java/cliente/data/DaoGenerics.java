@@ -3,6 +3,7 @@ package cliente.data;
 import cliente.domain.errores.ErrorClient;
 import com.google.gson.Gson;
 
+import common.Constant;
 import errores.ApiError;
 import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.schedulers.Schedulers;
@@ -13,7 +14,7 @@ import okhttp3.MediaType;
 import retrofit2.HttpException;
 import retrofit2.Response;
 
-import java.time.LocalDateTime;
+
 import java.util.Objects;
 
 public abstract class DaoGenerics {
@@ -34,18 +35,18 @@ public abstract class DaoGenerics {
                 )
                 .subscribeOn(Schedulers.io())
                 .onErrorReturn(throwable -> {
-                    Either<ErrorClient, T> error = Either.left(new ErrorClient("Error de comunicacion"));
+                    Either<ErrorClient, T> error = Either.left(new ErrorClient(Constant.ERROR_DE_COMUNICACION));
 
                     if (throwable instanceof HttpException) {
                         int code = ((HttpException) throwable).code();
 
                         if (((HttpException) throwable).response().errorBody() != null) {
-                            if (Objects.equals(((HttpException) throwable).response().errorBody().contentType(), MediaType.get("application/json"))) {
+                            if (Objects.equals(((HttpException) throwable).response().errorBody().contentType(), MediaType.get(Constant.CONTENT_TYPE))) {
                                 ApiError api = gson.fromJson(((HttpException) throwable).response().errorBody().charStream(), ApiError.class);
                                 error = Either.left(new ErrorClient(code + api.getMessage()));
 
 
-                                //error = Either.right(T);
+
                             } else {
                                 error = Either.left(new ErrorClient(((HttpException) throwable).response().message()));
                             }
@@ -59,7 +60,7 @@ public abstract class DaoGenerics {
 
     public Single<Either<ErrorClient, String>> safeSingleVoidApicall(Single<Response<Void>> call) {
         return call.map(response -> {
-                    Either<ErrorClient, String> retorno = Either.right("OK");
+                    Either<ErrorClient, String> retorno = Either.right(Constant.OK);
                     if (!response.isSuccessful()) {
                         retorno = Either.left(new ErrorClient(response.message()));
                     }

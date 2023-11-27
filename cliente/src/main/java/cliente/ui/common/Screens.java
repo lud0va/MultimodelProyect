@@ -1,14 +1,13 @@
 package cliente.ui.common;
 
+import common.Constant;
+
 public enum Screens {
 
-    ADD("/fxml/addScreen.fxml"),
-    LOGIN("/fxml/loginScreen.fxml"),
+    ADD(Constant.FXML_ADD_SCREEN_FXML_ROOT),
+    LOGIN(Constant.FXML_LOGIN_SCREEN_FXML_ROOT),
 
-    LIST("/fxml/listScreen.fxml"),
-
-    CUSTOMERMAIN("/fxml/mainScreen.fxml");
-
+    LIST(Constant.FXML_LIST_SCREEN_FXML_ROOT);
 
 
     private String ruta;

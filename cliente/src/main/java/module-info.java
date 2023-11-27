@@ -20,7 +20,7 @@ module cliente {
     exports cliente.ui.main;
     exports cliente.data;
     exports cliente.common;
-    exports cliente.domain.useCases.useCases;
+    exports cliente.domain.usecases;
     exports cliente.ui.pantallas.principal;
     exports cliente.ui.pantallas.list;
     exports cliente.ui.pantallas.add;
@@ -28,7 +28,7 @@ module cliente {
     opens cliente.ui.pantallas.list;
     opens cliente.ui.pantallas.login;
     opens cliente.ui.pantallas.principal;
-    opens cliente.domain.useCases.useCases;
+    opens cliente.domain.usecases;
     opens cliente.ui.main;
     opens cliente.data;
     opens cliente.common;

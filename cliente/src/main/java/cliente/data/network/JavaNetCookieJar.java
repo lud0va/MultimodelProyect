@@ -1,11 +1,8 @@
 package cliente.data.network;
 
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by FernFlower decompiler)
-//
 
 
+import common.Constant;
 import okhttp3.Cookie;
 import okhttp3.Cookie.Builder;
 import okhttp3.CookieJar;
@@ -33,12 +30,12 @@ public final class JavaNetCookieJar implements CookieJar {
                 cookieStrings.add(cookie.toString());
             }
 
-            Map<String,List<String>> multimap = Collections.singletonMap("Set-Cookie", cookieStrings);
+            Map<String,List<String>> multimap = Collections.singletonMap(Constant.SET_COOKIE, cookieStrings);
 
             try {
                 this.cookieHandler.put(url.uri(), multimap);
             } catch (IOException var6) {
-                Platform.get().log(5, "Saving cookies failed for " + url.resolve("/..."), var6);
+                Platform.get().log(5, Constant.SAVING_COOKIES_FAILED_FOR + url.resolve(Constant.LINK_PATH), var6);
             }
         }
 
@@ -51,7 +48,7 @@ public final class JavaNetCookieJar implements CookieJar {
         try {
             cookieHeaders = this.cookieHandler.get(url.uri(), headers);
         } catch (IOException var10) {
-            Platform.get().log(5, "Loading cookies failed for " + url.resolve("/..."), var10);
+            Platform.get().log(5, Constant.LOADING_COOKIES_FAILED_FOR + url.resolve(Constant.LINK_PATH), var10);
             return Collections.emptyList();
         }
 
@@ -69,7 +66,7 @@ public final class JavaNetCookieJar implements CookieJar {
 
                     entry = var5.next();
                     key = entry.getKey();
-                } while(!"Cookie".equalsIgnoreCase(key) && !"Cookie2".equalsIgnoreCase(key));
+                } while(!Constant.COOKIE1.equalsIgnoreCase(key) && !Constant.COOKIE_2.equalsIgnoreCase(key));
             } while((entry.getValue()).isEmpty());
 
             String header;

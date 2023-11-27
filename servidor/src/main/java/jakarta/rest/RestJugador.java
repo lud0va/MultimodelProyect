@@ -1,16 +1,17 @@
 package jakarta.rest;
 
+import config.ConstantServer;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
-import model.Juego;
+
 import model.Jugador;
 
 import services.JugadorServices;
 
-import java.util.List;
 
-@Path("/jugador")
+
+@Path(ConstantServer.JUGADOR_PATH)
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class RestJugador {

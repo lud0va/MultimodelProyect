@@ -1,6 +1,7 @@
 package cliente.ui.main;
 
 import cliente.ui.pantallas.principal.PrincipalController;
+import common.Constant;
 import jakarta.enterprise.event.Observes;
 import jakarta.inject.Inject;
 import javafx.fxml.FXMLLoader;
@@ -19,7 +20,7 @@ public class MainFX {
     public void start(@Observes @StartupScene Stage stage) {
         try {
 
-            Parent fxmlParent = fxmlLoader.load(getClass().getResourceAsStream("/fxml/principalScreen.fxml"));
+            Parent fxmlParent = fxmlLoader.load(getClass().getResourceAsStream(Constant.FXML_PRINCIPAL_SCREEN_FXML));
             PrincipalController controller = fxmlLoader.getController();
             controller.setStage(stage);
 

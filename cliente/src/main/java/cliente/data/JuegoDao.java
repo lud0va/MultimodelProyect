@@ -8,10 +8,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 import io.vavr.control.Either;
 import jakarta.inject.Inject;
 import model.Juego;
-import model.Jugador;
-import retrofit2.Response;
-import retrofit2.http.Path;
-import retrofit2.http.Query;
+
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package cliente.domain.useCases.useCases;
+package cliente.domain.usecases;
 
 import cliente.data.JuegoDao;
 import cliente.domain.errores.ErrorClient;

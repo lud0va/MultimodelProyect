@@ -1,17 +1,19 @@
 package services;
 
+import config.ConstantServer;
 import data.CuentaDao;
 import errores.ApiError;
 import io.vavr.control.Either;
 import jakarta.inject.Inject;
-import jakarta.security.enterprise.SecurityContext;
+
 import jakarta.security.enterprise.identitystore.Pbkdf2PasswordHash;
 import model.Cuenta;
 
 public class CuentasServices {
+
     private final Pbkdf2PasswordHash passwordHash;
 
-    private SecurityContext securityContext;
+
 
     private final CuentaDao dao;
 
@@ -24,7 +26,7 @@ public class CuentasServices {
     public Either<ApiError, Cuenta>getCuenta(String idcuenta){
         Either<ApiError, Cuenta> cuenta=dao.getCuenta(idcuenta);
         if (cuenta!=null){
-            String password = passwordHash.generate("1234".toCharArray());
+            String password = passwordHash.generate(ConstantServer.NUMBER_HASH.toCharArray());
             cuenta.get().setPassword(password);
         }
 

@@ -1,5 +1,6 @@
 package cliente.data.retrofit;
 
+import common.Constant;
 import io.reactivex.rxjava3.core.Single;
 
 import model.Juego;
@@ -10,25 +11,24 @@ import retrofit2.http.*;
 import java.util.List;
 
 public interface JuegosApi {
-    @GET("juegos")
+
+    @GET(Constant.JUEGOS)
     Single<List<Juego>> getJuegos();
-    @GET("/{jugadorId}")
-     Single<List<Juego>> getJuegosById(@Query("jugadorId") int id);
 
-    @GET("juegos/juegosDeCompany")
-    Single<List<Juego>>  getJuegosDeCompany(@Query ("company") String companyName);
+    @GET(Constant.JUEGOS_JUEGOS_DE_COMPANY)
+    Single<List<Juego>>  getJuegosDeCompany(@Query (Constant.COMPANY) String companyName);
 
-    @DELETE("cuenta/{juegoId}")
-    Single<Response<Void>> deleteJuego(@Path("juegoId") String id);
-    @DELETE("juegos/juegosDeCompany")
-    Single<Response<Void>> deleteJuegosDeCompany(@Query("company")String company);
+    @DELETE(Constant.CUENTA_JUEGO_ID_PATH)
+    Single<Response<Void>> deleteJuego(@Path(Constant.JUEGO_ID) String id);
+    @DELETE(Constant.JUEGOS_JUEGOS_DE_COMPANY)
+    Single<Response<Void>> deleteJuegosDeCompany(@Query(Constant.COMPANY)String company);
 
-    @DELETE("juegos/deleteMultiple")
-    Single<Response<Void>> deleteJuegoMultiple(@Query("juegoIds")List<String> j);
+    @DELETE(Constant.JUEGOS_DELETE_MULTIPLE)
+    Single<Response<Void>> deleteJuegoMultiple(@Query(Constant.JUEGO_IDS)List<String> j);
 
-    @PUT("juegos/{juegoId}")
+    @PUT(Constant.JUEGOS_JUEGO_ID_PATH)
    Single<Juego> updateJuego(Juego updatedJuego);
 
-    @POST("juegos/")
+    @POST(Constant.JUEGOS_PATH)
     Single<Juego>addJuego(Juego juego);
 }

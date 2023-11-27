@@ -9,7 +9,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import lombok.Data;
 import cliente.ui.common.BaseScreenController;
-import model.Cuenta;
 
 @Data
 public class LoginController extends BaseScreenController {
@@ -44,19 +43,17 @@ public class LoginController extends BaseScreenController {
     @Override
     public void principalCargado() {
         super.principalCargado();
-        loginViewModel.getState().addListener((observableValue, loginState, newstate) ->{
-            Platform.runLater(() -> {
-            if (newstate.getError()!=null){
-                userERR.setText(newstate.getError());
-            }
-            if (newstate.getLogged()){
-                this.getPrincipalController().onLogin();
-            }});
-        });
+        loginViewModel.getState().addListener((observableValue, loginState, newstate) -> Platform.runLater(() -> {
+        if (newstate.getError()!=null){
+            userERR.setText(newstate.getError());
+        }
+        if (Boolean.TRUE.equals(newstate.getLogged())){
+            this.getPrincipalController().onLogin();
+        }}));
     }
 
    @FXML
-    private void Sign(ActionEvent actionEvent) {
+    private void sign(ActionEvent actionEvent) {
       loginViewModel.doSign(nombreSign.getText(),apellidoSign.getText(),usernameSign.getText(),passSign.getText(),ageSign.getText(),mailSign.getText());
 
     }

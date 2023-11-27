@@ -1,17 +1,3 @@
 
-g	java:S112&"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8½«”íÀ1
-g	java:S1128"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8¾«”íÀ1
-g	java:S112Q"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8¾«”íÀ1
-g	java:S112_"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8¾«”íÀ1
-g	java:S112z"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8¾«”íÀ1
-f
-java:S2583;"DChange this condition so that it does not always evaluate to "false"(²Ãœùÿÿÿÿ8×«”íÀ1
 _
-java:S1126a"BReplace this if-then-else statement by a single method invocation.(Ù Ï8â«”íÀ1
-]	java:S125q"<This block of commented-out lines of code should be removed.(Ğ—úæüÿÿÿÿ8ä«”íÀ1
-]	java:S125t"<This block of commented-out lines of code should be removed.(²ÿ êüÿÿÿÿ8ä«”íÀ1
-E
-java:S1128
-"(Remove this unused import 'model.Juego'.(¼é½ù8îÏ”íÀ1
-M
-java:S1128"+Remove this unused import 'java.util.UUID'.(ÀãÄ£úÿÿÿÿ8îÏ”íÀ1
+java:S1126d"BReplace this if-then-else statement by a single method invocation.(Ù Ï8¶½ä–Á1

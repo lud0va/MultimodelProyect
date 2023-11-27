@@ -4,6 +4,7 @@ import data.JugadoresDao;
 import data.impl.commondatabase.DBConnection;
 import data.impl.commondatabase.DBQueries;
 import errores.ApiError;
+import errores.exceptions.BDDException;
 import io.vavr.control.Either;
 import jakarta.inject.Inject;
 import model.Jugador;
@@ -36,7 +37,7 @@ public class JugadoresDaoImpl implements JugadoresDao {
             return Either.right(jugador);
 
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new BDDException(e.getMessage());
         }
     }
 }

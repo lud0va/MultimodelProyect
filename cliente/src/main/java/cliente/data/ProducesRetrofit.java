@@ -7,6 +7,7 @@ import cliente.data.retrofit.JuegosApi;
 import cliente.data.retrofit.JugadorApi;
 import com.google.gson.*;
 import cliente.data.network.JavaNetCookieJar;
+import common.Constant;
 import jakarta.enterprise.inject.Produces;
 import jakarta.inject.Singleton;
 import okhttp3.ConnectionPool;
@@ -51,9 +52,9 @@ public class ProducesRetrofit {
                 .readTimeout(Duration.of(10, ChronoUnit.MINUTES))
                 .callTimeout(Duration.of(10, ChronoUnit.MINUTES))
                 .connectTimeout(Duration.of(10, ChronoUnit.MINUTES))
-                //.addInterceptor(new AuthorizationInterceptor(cache))
+
                 .connectionPool(new ConnectionPool(1, 1, TimeUnit.SECONDS))
-                // necesario para la sesion
+
                .cookieJar(new JavaNetCookieJar(cookieManager))
                 .build();
     }
@@ -65,7 +66,7 @@ public class ProducesRetrofit {
     public Retrofit retrofits(Gson gson, OkHttpClient clientOK ) {
 
         return  new Retrofit.Builder()
-                .baseUrl("http://localhost:8080/servidor-1.0-SNAPSHOT/api/")
+                .baseUrl(Constant.URL_BASE)
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .addCallAdapterFactory(RxJava3CallAdapterFactory.create())

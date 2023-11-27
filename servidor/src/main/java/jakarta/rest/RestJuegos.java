@@ -1,5 +1,6 @@
 package jakarta.rest;
 
+import config.ConstantServer;
 import errores.ApiError;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
@@ -11,7 +12,7 @@ import services.JuegosServices;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Path("/juegos")
+@Path(ConstantServer.JUEGOS_PATH)
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class RestJuegos {
@@ -27,26 +28,22 @@ public class RestJuegos {
         return serv.getAllJuego().get();
     }
 
-    @GET
-    @Path("/{jugadorId}")
-    public List<Juego> getJuegosById(@PathParam("jugadorId") String id) {
-        return serv.getJuegosDeJug(id).get();
-    }
+
 
     @GET
-    @Path("/juegosDeCompany")
-    public List<Juego> getJuegosDeCompany( @QueryParam ("company") String companyName) {
+    @Path(ConstantServer.JUEGOS_DE_COMPANY)
+    public List<Juego> getJuegosDeCompany( @QueryParam (ConstantServer.COMPANY) String companyName) {
         return serv.getJuegosDeCompany(companyName).get();
     }
     @DELETE
-    @Path("/juegosDeCompany")
-    public Response deleteJuegosDeCompany(@QueryParam("company")String company){
+    @Path(ConstantServer.JUEGOS_DE_COMPANY)
+    public Response deleteJuegosDeCompany(@QueryParam(ConstantServer.COMPANY)String company){
         if (Boolean.TRUE.equals(serv.deleteJuegosDeCompany(company).get())){
             return Response.status(Response.Status.NO_CONTENT).build();
         }else {
             return Response.status(Response.Status.NOT_FOUND)
                     .entity(ApiError.builder()
-                            .message("juego no encontrado")
+                            .message(ConstantServer.JUEGO_NO_ENCONTRADO)
                             .fecha(LocalDateTime.now())
                             .build())
                     .build();
@@ -67,14 +64,14 @@ public class RestJuegos {
     }
 
     @DELETE
-    @Path("/{juegoId}")
-    public Response deleteJuego(@PathParam("juegoId") String id) {
+    @Path(ConstantServer.JUEGO_ID_PATH)
+    public Response deleteJuego(@PathParam(ConstantServer.JUEGO_ID) String id) {
        if (Boolean.TRUE.equals(serv.delete(id).get())){
            return Response.status(Response.Status.NO_CONTENT).build();
        }else {
            return Response.status(Response.Status.NOT_FOUND)
                    .entity(ApiError.builder()
-                           .message("juego no encontrado")
+                           .message(ConstantServer.JUEGO_NO_ENCONTRADO)
                            .fecha(LocalDateTime.now())
                            .build())
                    .build();
@@ -82,14 +79,14 @@ public class RestJuegos {
     }
 
     @DELETE
-    @Path("/deleteMultiple")
-    public Response deleteJuego(@QueryParam("juegoIds")List<String> j) {
+    @Path(ConstantServer.DELETE_MULTIPLE)
+    public Response deleteJuego(@QueryParam(ConstantServer.JUEGO_IDS)List<String> j) {
         if ((serv.deleteListaJuegos(j).get())>0){
             return Response.status(Response.Status.NO_CONTENT).build();
         }else {
             return Response.status(Response.Status.NOT_FOUND)
                     .entity(ApiError.builder()
-                            .message("juego no encontrado")
+                            .message(ConstantServer.JUEGO_NO_ENCONTRADO)
                             .fecha(LocalDateTime.now())
                             .build())
                     .build();

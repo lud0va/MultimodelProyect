@@ -1,9 +1,12 @@
 package data.impl;
 
+import common.Constant;
+import config.ConstantServer;
 import data.JuegoDao;
 import data.impl.commondatabase.DBConnection;
 import data.impl.commondatabase.DBQueries;
 import errores.ApiError;
+import errores.exceptions.BDDException;
 import io.vavr.control.Either;
 import jakarta.inject.Inject;
 import model.Juego;
@@ -36,11 +39,11 @@ public class JuegoDaoImpl implements JuegoDao {
             juegos = readFile(rs);
 
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new BDDException(e.getMessage());
         }
 
         if (juegos.isEmpty()) {
-            return Either.left(new ApiError("Error al cargar los juegos", LocalDateTime.now()));
+            return Either.left(new ApiError(ConstantServer.ERROR_AL_CARGAR_LA_CUENTA, LocalDateTime.now()));
         } else {
             return Either.right(juegos);
         }
@@ -58,11 +61,11 @@ public class JuegoDaoImpl implements JuegoDao {
             juegos = readFile(rs);
 
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new BDDException(e.getMessage());
         }
 
         if (juegos.isEmpty()) {
-            return Either.left(new ApiError("Error al cargar los juegos", LocalDateTime.now()));
+            return Either.left(new ApiError(Constant.ERROR_AL_CARGAR_LOS_JUEGOS, LocalDateTime.now()));
         } else {
             return Either.right(juegos);
         }
@@ -78,11 +81,11 @@ public class JuegoDaoImpl implements JuegoDao {
             juegos = readFile(rs);
 
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new BDDException(e.getMessage());
         }
 
         if (juegos.isEmpty()) {
-            return Either.left(new ApiError("Error al cargar los juegos", LocalDateTime.now()));
+            return Either.left(new ApiError(Constant.ERROR_AL_CARGAR_LOS_JUEGOS, LocalDateTime.now()));
         } else {
             return Either.right(juegos);
         }
@@ -104,7 +107,7 @@ public class JuegoDaoImpl implements JuegoDao {
             return Either.right(true);
 
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new BDDException(e.getMessage());
         }
 
 
@@ -126,7 +129,7 @@ public class JuegoDaoImpl implements JuegoDao {
             return Either.right(j);
 
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new BDDException(e.getMessage());
         }
 
     }
@@ -149,7 +152,7 @@ public class JuegoDaoImpl implements JuegoDao {
             return Either.right(j);
 
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new BDDException(e.getMessage());
         }
     }
 
@@ -172,14 +175,14 @@ public class JuegoDaoImpl implements JuegoDao {
                     preparedStatementJuegDel.setString(1,juego.getJuegoId());
                     preparedStatementJuegDel.executeUpdate();
                 } catch (SQLException e) {
-                    throw new RuntimeException(e);
+                    throw new BDDException(e.getMessage());
                 }
 
             });
             return Either.right(true);
 
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new BDDException(e.getMessage());
         }
 
     }
@@ -199,7 +202,7 @@ public class JuegoDaoImpl implements JuegoDao {
 
 
        } catch (SQLException e) {
-           throw new RuntimeException(e);
+           throw new BDDException(e.getMessage());
        }
    }
 
@@ -217,19 +220,14 @@ public class JuegoDaoImpl implements JuegoDao {
 
 
             while (rs.next()) {
-                String juegoId = rs.getString("juegoId");
-                String jugadorId = rs.getString("jugadorId");
-                String tituloJuego = rs.getString("tituloJuego");
-                int pegi = rs.getInt("pegi");
-                double precio = rs.getDouble("precio");
+                String juegoId = rs.getString(ConstantServer.JUEGO_ID);
+                String jugadorId = rs.getString(ConstantServer.JUGADOR_ID);
+                String tituloJuego = rs.getString(ConstantServer.TITULO_JUEGO);
+                int pegi = rs.getInt(ConstantServer.PEGI);
+                double precio = rs.getDouble(ConstantServer.PRECIO);
 
-                String desarrolladora = rs.getString("desarrolladora");
-                long numericValuejueg = Long.parseLong(juegoId);
-                long numericValuejugador = Long.parseLong(jugadorId);
+                String desarrolladora = rs.getString(ConstantServer.DESARROLLADORA);
 
-                // Crear un UUID utilizando el valor numérico
-                UUID jueg = new UUID(0, numericValuejueg);
-                UUID jugad = new UUID(0, numericValuejugador);
 
 
                 juegos.add(new Juego(juegoId, jugadorId, tituloJuego, pegi, precio, desarrolladora));
@@ -237,7 +235,7 @@ public class JuegoDaoImpl implements JuegoDao {
 
 
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new BDDException(e.getMessage());
         }
         return juegos;
     }
