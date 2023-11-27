@@ -8,5 +8,12 @@
       <jdbc-url>jdbc:mysql://dam2.mysql.iesquevedo.es:3335/luisdecena_PSP</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="dbPsp [2]" uuid="9453b79c-ce74-4f8b-bbe9-083bc5473081">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://dam2.mysql.iesquevedo.es:3335/luisdecena_PSP</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>

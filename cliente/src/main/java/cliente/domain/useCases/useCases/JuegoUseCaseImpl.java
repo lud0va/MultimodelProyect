@@ -4,13 +4,14 @@ import cliente.data.JuegoDao;
 import cliente.domain.errores.ErrorClient;
 import io.reactivex.rxjava3.core.Single;
 import io.vavr.control.Either;
+import jakarta.inject.Inject;
 import model.Juego;
 
 import java.util.List;
 
 public class JuegoUseCaseImpl implements JuegoUseCase{
     private final JuegoDao dao;
-
+   @Inject
     public JuegoUseCaseImpl(JuegoDao dao) {
         this.dao = dao;
     }

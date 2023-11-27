@@ -1,4 +1,6 @@
 package cliente.ui.pantallas.add;
 
-public class AddController {
+import cliente.ui.common.BaseScreenController;
+
+public class AddController extends BaseScreenController {
 }

@@ -1,6 +1,7 @@
 package cliente.ui.pantallas.login;
 
 import jakarta.inject.Inject;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -44,12 +45,13 @@ public class LoginController extends BaseScreenController {
     public void principalCargado() {
         super.principalCargado();
         loginViewModel.getState().addListener((observableValue, loginState, newstate) ->{
+            Platform.runLater(() -> {
             if (newstate.getError()!=null){
                 userERR.setText(newstate.getError());
             }
             if (newstate.getLogged()){
                 this.getPrincipalController().onLogin();
-            }
+            }});
         });
     }
 

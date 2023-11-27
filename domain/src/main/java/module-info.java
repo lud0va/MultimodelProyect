@@ -3,4 +3,5 @@ module domain {
     exports model;
     requires lombok;
     opens model;
+    exports common;
 }
